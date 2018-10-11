@@ -94,4 +94,5 @@
 
 ## 相关资源
 
-* [azure cli `TODO`]()
+* [Get started with Azure CLI](https://docs.microsoft.com/en-us/cli/azure/get-started-with-azure-cli?view=azure-cli-latest)
+* [Quickstart: Run an application in Azure Container Instances](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-quickstart)
