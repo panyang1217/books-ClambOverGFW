@@ -40,9 +40,51 @@
     az container show -g $SSR_GROUP -n $SSR_NAME | grep '\("ip":\)\|\("port":\)'
     ```
 
-5. 启动ShadowRocket客户端，并输入服务器Ip，端口已经密码
+5. 配置客户端上网
+
+    `Windows`：启动ShadowRocket客户端，并输入服务器Ip，端口已经密码
+
+    `Linux`:
+
+    安装shadowsocks-libev与polipo
+
+    ``` bash
+    sudo apt-get install shadowsocks-libev
+    sudo apt-get install polipo
+    ```
+
+    * 修改polipo配置
+
+    ``` bash
+    sudo vim /etc/polipo/config
+    ```
+
+    * 在polipo配置文件中添加以下内容：
+
+    ``` bash
+    # Uncomment this if you want to use a parent SOCKS proxy:
+
+    socksParentProxy = "localhost:1080"
+    socksProxyType = socks5
+    ```
+
+   * 启动ss-local，并重启polipo
+
+    ``` bash
+    ss-local -s <ip> -p 8388 -l 1080 -k password1 -m aes-256-cfb &
+    sudo systemclt restart polipo
+
+    export HTTP_PROXY=localhost:8123
+    export HTTPS_PROXY=localhost:8123
+    ```
 
 6. 关闭代理
+
+    `Linux`:
+
+    ``` bash
+     systemclt stop polipo
+    ```
 
 7. 删除Azure Container Instance
 
@@ -52,3 +94,4 @@
 
 ## 相关资源
 
+* [azure cli `TODO`]()
